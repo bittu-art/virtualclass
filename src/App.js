@@ -1,24 +1,33 @@
 import logo from './logo.svg';
 import './App.css';
-
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { SocketValueContext } from "./context/socket";
+import LoginPage from './components/Login';
+import Classsession from './components/Classsession';
+import Room from './components/RoomList';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+ return (
+    <Router>
+      <div className="App">
+        <SocketValueContext>
+
+      
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/classsession/:id/:roomId" element={<Classsession /> }/>
+          <Route path="/roomlist/" element={<Room /> }/>
+          
+          {/* <Route path="/menu" element={<NavBar />} /> */}
+   
+        
+
+
+                    {/* Add more private routes here */}
+        </Routes>
+          </SocketValueContext>
+        
+      </div>
+    </Router>
   );
 }
 
